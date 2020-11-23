@@ -69,20 +69,6 @@ public class add_faculty extends AppCompatActivity {
                 }
                 else {
 
-                    faculty_connectivity facultyBean = new faculty_connectivity();
-                    facultyBean.setFaculty_firstname(first_name);
-                    facultyBean.setFaculty_lastname(last_name);
-                    facultyBean.setFaculty_mobilenumber(phone_no);
-                    facultyBean.setFaculty_mail(mail);
-                    facultyBean.setFaculty_username(username);
-                    facultyBean.setFaculty_password(password);
-
-                    DB dbAdapter = new DB(add_faculty.this);
-                    dbAdapter.addFaculty(facultyBean);
-
-                    Intent intent =new Intent(add_faculty.this,principal_home.class);
-                    startActivity(intent);
-                    Toast.makeText(getApplicationContext(), "Faculty added successfully", Toast.LENGTH_SHORT).show();
 
                 }
 
