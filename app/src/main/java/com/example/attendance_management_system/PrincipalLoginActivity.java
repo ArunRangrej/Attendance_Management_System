@@ -40,9 +40,10 @@ public class PrincipalLoginActivity extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("principal");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 String dbusername = dataSnapshot.child("username").getValue(String.class);
                 String dbpassword = dataSnapshot.child("password").getValue(String.class);
-                if (user_name.equals(dbusername) && pass_word.equals(dbpassword) ) {
+                if (user_name.equals(dbusername) && pass_word.equals(dbpassword)) {
                     Intent intent =new Intent(PrincipalLoginActivity.this,principal_home.class);
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
