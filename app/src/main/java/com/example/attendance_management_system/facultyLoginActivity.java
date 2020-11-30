@@ -1,15 +1,20 @@
 package com.example.attendance_management_system;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.attendance_management_system.DB_Helper.faculty_connectivity;
-import com.example.attendance_management_system.DB_Connectivity.DB;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class facultyLoginActivity extends AppCompatActivity {
 
     @Override
@@ -21,30 +26,34 @@ public class facultyLoginActivity extends AppCompatActivity {
     public void validate_faculty(View view) {
         EditText username = (EditText) findViewById(R.id.faculty_username);
         EditText password = (EditText) findViewById(R.id.faculty_password);
-        String user_name = username.getText().toString();
-        String pass_word = password.getText().toString();
+        final String user_name = username.getText().toString();
+        final String pass_word = password.getText().toString();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Faculty").child(user_name);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String dbusername = dataSnapshot.child("fcontact").getValue(String.class);
+                String dbpassword = dataSnapshot.child("fpass").getValue(String.class);
+                if (user_name.equals(dbusername) && pass_word.equals(dbpassword)) {
+                    Intent intent =new Intent(facultyLoginActivity.this,faculty_home.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
+                    finish();
+                    //  }
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Please Enter valid user id or password", Toast.LENGTH_LONG).show();
+                }
+            }
 
-        if (TextUtils.isEmpty(user_name))
-        {
-            username.setError("Invalid User Name");
-        }
-        else if(TextUtils.isEmpty(pass_word))
-        {
-            password.setError("enter password");
-        }
-        DB dbAdapter = new DB(facultyLoginActivity.this);
-        faculty_connectivity facultyBean = dbAdapter.validateFaculty(user_name, pass_word);
-
-        if(facultyBean!=null)
-        {
-            Intent intent = new Intent(facultyLoginActivity.this,faculty_home.class);
-            startActivity(intent);
-            Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT).show();
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "database error", Toast.LENGTH_LONG).show();
+            }
+        });
     }
+}
 
-    }
+
+
+

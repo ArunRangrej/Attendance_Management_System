@@ -14,9 +14,10 @@ public class principal_home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal_home);
         Button addFaculty = (Button) findViewById(R.id.principal_add_faculty);
-        Button viewFaculty = (Button) findViewById(R.id.principal_view_faculty);
+        Button addStudent = (Button) findViewById(R.id.principal_add_student);
         Button logout = (Button) findViewById(R.id.loout_button);
-               addFaculty.setOnClickListener(new View.OnClickListener() {
+
+        addFaculty.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -27,13 +28,13 @@ public class principal_home extends AppCompatActivity {
             }
         });
 
-        viewFaculty.setOnClickListener(new View.OnClickListener() {
+        addStudent.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
-                Intent intent =new Intent(principal_home.this,view_faculty.class);
+                Intent intent =new Intent(principal_home.this,add_student.class);
                 startActivity(intent);
             }
         });

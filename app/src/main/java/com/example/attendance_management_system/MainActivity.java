@@ -26,4 +26,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent =new Intent(MainActivity.this,facultyLoginActivity.class);
         startActivity(intent);
     }
+
+    public void test(View view)
+    {
+        Intent intent =new Intent(MainActivity.this,add_student.class);
+        startActivity(intent);
+    }
 }
