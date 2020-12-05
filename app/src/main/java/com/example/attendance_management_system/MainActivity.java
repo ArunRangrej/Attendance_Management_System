@@ -1,10 +1,10 @@
 package com.example.attendance_management_system;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void test(View view)
     {
-        Intent intent =new Intent(MainActivity.this,add_student.class);
+        Intent intent =new Intent(MainActivity.this,Take_student_attendance.class);
         startActivity(intent);
     }
 }
