@@ -7,10 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,17 +25,7 @@ import java.util.Date;
 
 public class Take_student_attendance extends AppCompatActivity {
 
-    public String teacher_id;
-    String class_selected;
-    Spinner period;
-    String periodno;
-    ArrayList<String> selectedItems;
-    ArrayList<String> nonselectedItems;
-    Toolbar mToolbar;
 
-    ArrayList<String> ul;
-    ListView listView;
-    private ArrayAdapter adapter;
     ArrayList Userlist = new ArrayList<>();
     ArrayList Usernames = new ArrayList<>();
     ArrayList<String> Present_students = new ArrayList<>();
@@ -123,7 +111,6 @@ public class Take_student_attendance extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 }

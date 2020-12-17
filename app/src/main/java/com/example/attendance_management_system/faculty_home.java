@@ -17,7 +17,9 @@ public class faculty_home extends AppCompatActivity {
         Button take_attendance = (Button) findViewById(R.id.Take_Attendance);
         Bundle bundle1 = getIntent().getExtras();
         message = bundle1.getString("message");
+
         EditText username = (EditText) findViewById(R.id.id_display);
+
         username.setText("Welcome "+message);
         take_attendance.setOnClickListener(new View.OnClickListener() {
 

@@ -1,23 +1,19 @@
 package com.example.attendance_management_system;
 
-import android.widget.EditText;
-
 public class Student {
     String firstname;
     String lastname;
     String phno;
     String mail;
-    String password;
     String usn;
     String DOB;
     String address;
 
-    public Student(String firstname, String lastname, String DOB, String address, String phno, String mail, String usn, String password) {
+    public Student(String firstname, String lastname, String DOB, String address, String phno, String mail, String usn) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.phno = phno;
         this.mail = mail;
-        this.password = password;
         this.usn = usn;
         this.DOB = DOB;
         this.address = address;
@@ -55,13 +51,7 @@ public class Student {
         this.mail = mail;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getUsn() {
         return usn;

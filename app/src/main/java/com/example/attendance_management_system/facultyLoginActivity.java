@@ -26,8 +26,8 @@ public class facultyLoginActivity extends AppCompatActivity {
     public void validate_faculty(View view) {
         EditText username = (EditText) findViewById(R.id.faculty_username);
         EditText password = (EditText) findViewById(R.id.faculty_password);
-        final String user_name = username.getText().toString();
-        final String pass_word = password.getText().toString();
+        final String user_name = username.getText().toString().trim();
+        final String pass_word = password.getText().toString().trim();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Faculty").child(user_name);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
