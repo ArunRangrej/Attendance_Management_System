@@ -26,6 +26,7 @@ import java.util.Date;
 public class Take_student_attendance extends AppCompatActivity {
 
 
+
     ArrayList Userlist = new ArrayList<>();
     ArrayList Usernames = new ArrayList<>();
     ArrayList<String> Present_students = new ArrayList<>();
@@ -40,11 +41,9 @@ public class Take_student_attendance extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_student_attendance);
-        Bundle bundle1 = getIntent().getExtras();
-        String teacher_id  = bundle1.getString("message");
+
         DatabaseReference dbuser = ref.child("Student");
 
-        Toast.makeText(getApplicationContext(), teacher_id, Toast.LENGTH_LONG).show();
         dbuser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -87,20 +86,18 @@ public class Take_student_attendance extends AppCompatActivity {
 
     }
     public void showSelectedItems(View view) {
-
+        Bundle bundle1 = getIntent().getExtras();
+        String teacher_id  = bundle1.getString("message");
             ref = FirebaseDatabase.getInstance().getReference();
 
-            dbAttendance = ref.child("Attendance").child(date);
+            dbAttendance = ref.child("Attendance").child(date).child(teacher_id);
 
             for (String item : Present_students) {
                 Absent_students.remove(item);
                 dbAttendance.child(item).setValue("P");
 
             }
-            // Toast.makeText(this, selItems, Toast.LENGTH_LONG).show();
 
-
-            //for making absent
             for (String item : Absent_students) {
                 dbAttendance.child(item).setValue("A");
             }
@@ -113,5 +110,6 @@ public class Take_student_attendance extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
+
 }
 
