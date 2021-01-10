@@ -17,29 +17,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class PrincipalLoginActivity extends AppCompatActivity {
+public class TeacherLoginActivity extends AppCompatActivity {
     Button login;
     DatabaseReference ref;
     String userid,pass;
     String dbpassword;
-    String dbusername;
     Bundle basket;
     EditText username,password;
     ProgressDialog mDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal_login);
+        setContentView(R.layout.activity_teacher_login);
         login = findViewById(R.id.login);
         username = findViewById(R.id.teacher_id);
         password = findViewById(R.id.teacher_password);
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 userid = username.getText().toString();
                 pass = password.getText().toString();
-                mDialog=new ProgressDialog(PrincipalLoginActivity.this);
+                mDialog=new ProgressDialog(TeacherLoginActivity.this);
                 mDialog.setMessage("Please Wait..."+userid);
                 mDialog.setTitle("Loading");
                 mDialog.show();
@@ -47,7 +45,7 @@ public class PrincipalLoginActivity extends AppCompatActivity {
                 basket.putString("message", userid);
 
                 ref = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference dbuser = ref.child("principal");
+                DatabaseReference dbuser = ref.child("Teacher").child(userid);
 
 
                 dbuser.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -55,9 +53,8 @@ public class PrincipalLoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         mDialog.dismiss();
-                        dbusername = dataSnapshot.child("username").getValue(String.class);
-                        dbpassword = dataSnapshot.child("password").getValue(String.class);
-                        verify(dbusername,dbpassword);
+                        dbpassword = dataSnapshot.child("tpass").getValue(String.class);
+                        verify(dbpassword);
                     }
 
                     @Override
@@ -69,24 +66,22 @@ public class PrincipalLoginActivity extends AppCompatActivity {
         });
     }
 
-    public void verify(String dbusername,String dbpassword) {
+    public void verify(String dbpassword) {
         if(userid.isEmpty()) {
             Toast.makeText(getApplicationContext(),"Username cannot be empty", Toast.LENGTH_LONG).show();
         }
-        else if (userid.equals(dbusername) && pass.equals(dbpassword) ) {
+        else if (pass.equalsIgnoreCase(this.dbpassword) ) {
             //  if (userid.equalsIgnoreCase("admin") && pass.equals("admin")) {
             mDialog.dismiss();
-            Intent intent = new Intent(this, principal_home.class);
+            Intent intent = new Intent(this, Teacher_home.class);
             intent.putExtras(basket);
             startActivity(intent);
             Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
             finish();
             //  }
         }
-        else
-        {
+        else {
             Toast.makeText(getApplicationContext(), "Please Enter valid user id or password", Toast.LENGTH_LONG).show();
         }
     }
-
 }

@@ -50,7 +50,6 @@ public class Take_student_attendance extends AppCompatActivity {
 
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
                     Userlist.add(dsp.child("usn").getValue().toString());
-                    Usernames.add(dsp.child("firstname").getValue().toString()+" "+dsp.child("lastname").getValue().toString());
 
                 }
                 OnStart(Userlist);

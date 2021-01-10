@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="periods">
+    <item>P1</item>
+    <item>P2</item>
+    <item>P3</item>
+    <item>P4</item>
+    <item>P5</item>
+    <item>P6</item>
+        <item>P7</item>
+        <item>P8</item>
+
+    </string-array>
+</resources>

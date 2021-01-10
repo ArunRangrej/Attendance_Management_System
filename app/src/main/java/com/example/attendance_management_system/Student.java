@@ -1,38 +1,57 @@
 package com.example.attendance_management_system;
 
 public class Student {
-    String firstname;
-    String lastname;
+    String name;
+    String usn;
+    String password;
+    String DOB;
     String phno;
     String mail;
-    String usn;
-    String DOB;
-    String address;
+    String sem;
+    String department;
 
-    public Student(String firstname, String lastname, String DOB, String address, String phno, String mail, String usn) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.phno = phno;
-        this.mail = mail;
+    public Student(String sname , String susn, String spass, String sdob, String sphno, String smail, String sclass, String sdept) {
+        this.name = sname;
+        this.usn = susn;
+        this.password = spass;
+        this.DOB = sdob;
+        this.phno = sphno;
+        this.mail = smail;
+        this.sem = sclass;
+        this.department = sdept;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUsn() {
+        return usn;
+    }
+
+    public void setUsn(String usn) {
         this.usn = usn;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getDOB() {
+        return DOB;
+    }
+
+    public void setDOB(String DOB) {
         this.DOB = DOB;
-        this.address = address;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public String getPhno() {
@@ -51,29 +70,19 @@ public class Student {
         this.mail = mail;
     }
 
-
-
-    public String getUsn() {
-        return usn;
+    public String getSem() {
+        return sem;
     }
 
-    public void setUsn(String usn) {
-        this.usn = usn;
+    public void setSem(String sem) {
+        this.sem = sem;
     }
 
-    public String getDOB() {
-        return DOB;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setDOB(String DOB) {
-        this.DOB = DOB;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 }

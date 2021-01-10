@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="classes">
+        <item>3rd Sem</item>
+        <item>5th Sem</item>
+    </string-array>
+</resources>

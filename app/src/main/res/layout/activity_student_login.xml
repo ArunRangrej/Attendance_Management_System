@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FAFAFF"
-    tools:context=".PrincipalLoginActivity">
+    tools:context=".StudentLoginActivity">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -31,17 +31,16 @@
                     <ImageView
                         android:layout_width="90dp"
                         android:layout_height="90dp"
-                        android:src="@drawable/ic_admin_with_cogwheels"/>
-
+                        android:src="@drawable/ic_student"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:text="Principal Login"
+                        android:text="Student Login"
                         android:textColor="#fff"
+                        android:layout_gravity="center"
                         android:textSize="30sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"/>
 
                 </LinearLayout>
                 <RelativeLayout
@@ -49,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="260dp"
+                    android:layout_marginTop="280dp"
                     android:layout_marginRight="10dp"
                     android:orientation="vertical">
 
@@ -64,23 +63,22 @@
                             android:layout_height="match_parent"
                             android:background="@drawable/rectangle2"
                             android:padding="50dp">
-
                             <EditText
-                                android:id="@+id/teacher_id"
-                                android:layout_width="260dp"
-                                android:layout_height="60dp"
                                 android:layout_centerHorizontal="true"
+                                android:id="@+id/adminEditText"
+                                android:layout_width="260dp"
+                                android:textColor="#252529"
+                                android:layout_height="60dp"
                                 android:background="@drawable/inputs"
                                 android:drawableLeft="@drawable/ic_person_black_24dp"
                                 android:drawablePadding="10dp"
-                                android:hint="Principal Id"
-                                android:importantForAutofill="no"
+                                android:hint="Student ID"
                                 android:inputType="text"
                                 android:padding="10dp"
-                                android:textColor="#252529" />
+                                android:importantForAutofill="no" />
 
                             <EditText
-                                android:id="@+id/teacher_password"
+                                android:id="@+id/adminPasswordEditText"
                                 android:layout_width="260dp"
                                 android:layout_height="60dp"
                                 android:textColor="#252529"
@@ -88,7 +86,7 @@
                                 android:background="@drawable/inputs"
                                 android:drawableLeft="@drawable/ic_lock"
                                 android:drawablePadding="10dp"
-                                android:layout_below="@id/teacher_id"
+                                android:layout_below="@id/adminEditText"
                                 android:hint="Password"
                                 android:layout_centerHorizontal="true"
                                 android:inputType="textPassword"
@@ -98,7 +96,7 @@
                                 android:id="@+id/login"
                                 android:layout_width="200dp"
                                 android:layout_height="50dp"
-                                android:layout_below="@id/teacher_password"
+                                android:layout_below="@id/adminPasswordEditText"
                                 android:layout_marginTop="22dp"
                                 android:background="@drawable/button1"
                                 android:text="Login"
@@ -117,6 +115,7 @@
                     android:layout_below="@id/relativelayot"
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="50dp"
+                    android:layout_marginBottom="35dp"
                     android:background="@drawable/rectangle1">
 
                 </LinearLayout>
