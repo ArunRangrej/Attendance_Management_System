@@ -94,9 +94,6 @@ public class addteacher extends AppCompatActivity {
         if (val.isEmpty()) {
             tpassword.setError("Field can not be empty");
             return false;
-        } else if (!val.matches(checkPassword)) {
-            tpassword.setError("Password should contain 4 characters!");
-            return false;
         } else {
             tpassword.setError(null);
             return true;

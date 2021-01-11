@@ -106,9 +106,6 @@ public class addstudent extends AppCompatActivity {
         if (val.isEmpty()) {
             Spassword.setError("Field can not be empty");
             return false;
-        } else if (!val.matches(checkPassword)) {
-            Spassword.setError("Password should contain 4 characters!");
-            return false;
         } else {
             Spassword.setError(null);
             return true;

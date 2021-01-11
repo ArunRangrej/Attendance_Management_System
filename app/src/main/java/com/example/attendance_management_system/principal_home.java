@@ -40,7 +40,7 @@ public class principal_home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal_home);
         mToolbar=(Toolbar)findViewById(R.id.ftoolbar);
-        mToolbar.setTitle("Admin Dashboard : "+"("+date+")");
+        mToolbar.setTitle("Principal Dashboard : "+"("+date+")");
         ref = FirebaseDatabase.getInstance().getReference();
         dbStudent = ref.child("Student");
         dbAttendance = ref.child("attendance");
