@@ -4,9 +4,6 @@ public class Subjects {
     String teacher_id;
     String subject;
 
-  /*  public Teacher(String tname, String tid, EditText subject, Spinner classes){
-
-    }*/
 
     public Subjects(String tid, String sub) {
 

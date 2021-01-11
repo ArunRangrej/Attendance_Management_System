@@ -54,7 +54,9 @@ public class addstudent extends AppCompatActivity {
 
     public void addStudent(View v){
 
-
+        if (!validateName() | !validateDOB() | !validateContact() | !validatePassword() | !validateEmail() | !validateUsn() ) {
+            return;
+        }
         if (!(TextUtils.isEmpty(Susn.getText().toString()))) {
             //String id = databaseStudent.push().getKey();
             sname = Sname.getText().toString();
@@ -88,6 +90,87 @@ public class addstudent extends AppCompatActivity {
         }
     }
 
+    private boolean validateName() {
+        String val = Sname.getText().toString().trim();
+        if (val.isEmpty()) {
+            Sname.setError("Name can not be empty");
+            return false;
+        } else {
+            Sname.setError(null);
+            return true;
+        }
+    }
+    private boolean validatePassword() {
+        String val = Spassword.getText().toString().trim();
+        String checkPassword ="^{4,}$";
+        if (val.isEmpty()) {
+            Spassword.setError("Field can not be empty");
+            return false;
+        } else if (!val.matches(checkPassword)) {
+            Spassword.setError("Password should contain 4 characters!");
+            return false;
+        } else {
+            Spassword.setError(null);
+            return true;
+        }
+    }
+    private boolean validateDOB() {
+        String val = SDOB.getText().toString().trim();
+        String pattern = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
+
+        if (val.isEmpty()) {
+            SDOB.setError("DOB can not be empty");
+            return false;
+        }else if (!val.matches(pattern)) {
+            SDOB.setError("Enter Valid DOB!");
+            return false;
+        }
+        else {
+            SDOB.setError(null);
+            return true;
+        }
+    }
+    private boolean validateContact() {
+        String val = Sphno.getText().toString().trim();
+        String Pattern = "^[6-9]{1}[0-9]{9}$";
+        if (!val.matches(Pattern)) {
+            Sphno.setError("Enter valid phone number!");
+            return false;
+        }
+        else {
+            Sphno.setError(null);
+            return true;
+        }
+    }
+    private boolean validateEmail() {
+        String val = Smail.getText().toString().trim();
+        String checkEmail = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        if (val.isEmpty()) {
+            Smail.setError("Field can not be empty");
+            return false;
+        } else if (!val.matches(checkEmail)) {
+            Smail.setError("Invalid Email!");
+            return false;
+        } else {
+            Smail.setError(null);
+            return true;
+        }
+    }
+
+
+    private boolean validateUsn() {
+        String val = Susn.getText().toString().trim();
+        String Pattern = "^[1]{1}+[M]{1}+[SY]{1}+[1-9]{1}+[1-9]{1}+[M]+[C]+[A]+[0-9]{1}+[0-9]{1}$";
+        if (!val.matches(Pattern)) {
+            Susn.setError("Enter valid USN number!");
+            return false;
+        }
+        else {
+            Susn.setError(null);
+            return true;
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

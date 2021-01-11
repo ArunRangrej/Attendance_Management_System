@@ -44,6 +44,9 @@ public class addteacher extends AppCompatActivity {
     }
 
     public void addTeacher(View v){
+        if (!validateName()  | !validatePassword()) {
+            return;
+        }
         tname = Tname.getText().toString();
         tid = Tid.getText().toString();
         dept = Department.getSelectedItem().toString();
@@ -72,7 +75,33 @@ public class addteacher extends AppCompatActivity {
         }
     }
 
+    private boolean validateName() {
+        String val = Tname.getText().toString().trim();
+        if (val.isEmpty()) {
+            Tname.setError("Field can not be empty");
+            return false;
+        } else {
+            Tname.setError(null);
+            return true;
+        }
+    }
 
+
+
+    private boolean validatePassword() {
+        String val = tpassword.getText().toString().trim();
+        String checkPassword ="^{4,}$";
+        if (val.isEmpty()) {
+            tpassword.setError("Field can not be empty");
+            return false;
+        } else if (!val.matches(checkPassword)) {
+            tpassword.setError("Password should contain 4 characters!");
+            return false;
+        } else {
+            tpassword.setError(null);
+            return true;
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

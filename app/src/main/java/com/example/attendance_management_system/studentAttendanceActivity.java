@@ -47,6 +47,9 @@ public class studentAttendanceActivity extends AppCompatActivity {
     }
 
     public void viewlist(View v) {
+        if ( !validateDOB() ) {
+            return;
+        }
 
         Userlist.clear();
         DatabaseReference dbuser = ref.child("Student").child(sem);
@@ -120,7 +123,22 @@ public class studentAttendanceActivity extends AppCompatActivity {
 
 
     }
+    private boolean validateDOB() {
+        String val = date.getText().toString().trim();
+        String pattern = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
 
+        if (val.isEmpty()) {
+            date.setError("Date can not be empty");
+            return false;
+        }else if (!val.matches(pattern)) {
+            date.setError("Enter Valid Date!");
+            return false;
+        }
+        else {
+            date.setError(null);
+            return true;
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

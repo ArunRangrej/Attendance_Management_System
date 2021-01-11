@@ -71,6 +71,9 @@ public class Principal_add_link_subjects extends AppCompatActivity {
         Teacher_id.setAdapter(dataAdapter);
     }
     public void add_subjects(View v){
+        if (!validateSub() ) {
+            return;
+        }
         department = Department.getSelectedItem().toString();
         sem = Sem.getSelectedItem().toString();
         teacher_id = Teacher_id.getSelectedItem().toString();
@@ -82,6 +85,16 @@ public class Principal_add_link_subjects extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Subject added successfully", Toast.LENGTH_LONG).show();
             finish();
 
+        }
+    }
+    private boolean validateSub() {
+        String val = Subject.getText().toString().trim();
+        if (val.isEmpty()) {
+            Subject.setError("Name can not be empty");
+            return false;
+        } else {
+            Subject.setError(null);
+            return true;
         }
     }
 }
