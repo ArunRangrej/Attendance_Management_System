@@ -59,7 +59,7 @@ public class principal_home extends AppCompatActivity {
         startActivity(intent);
     }
     public void attendanceRecord(View v){
-        Intent intent = new Intent(this, adminattendance.class);
+        Intent intent = new Intent(this, Principal_attendanceSheet.class);
         startActivity(intent);
     }
 
@@ -79,7 +79,7 @@ public class principal_home extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void changepassword(View view) {
-        dbadmin=ref.child("Admin");
+        dbadmin=ref.child("principal");
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle("Set your new password");
@@ -93,7 +93,7 @@ public class principal_home extends AppCompatActivity {
             public void onClick(final DialogInterface dialog, int which) {
                 if (!TextUtils.isEmpty(password.getText().toString()))
                 {
-                    dbadmin.child("Admin").setValue(password.getText().toString());
+                    dbadmin.child("password").setValue(password.getText().toString());
                     Toast.makeText(principal_home.this, "Successfully Changed", Toast.LENGTH_SHORT).show();
                 }
                 else

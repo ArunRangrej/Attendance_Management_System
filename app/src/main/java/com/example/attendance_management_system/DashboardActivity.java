@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 public class DashboardActivity extends AppCompatActivity {
-    Button admin, student, teacher;
+    Button admin, student, teacher, info;
     private static long back_pressed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +19,7 @@ public class DashboardActivity extends AppCompatActivity {
         admin = findViewById(R.id.buttonAdmin);
         student = findViewById(R.id.buttonStudent);
         teacher = findViewById(R.id.buttonTeacher);
+        info = findViewById(R.id.buttonInfo);
 
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +43,16 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DashboardActivity.this, TeacherLoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardActivity.this, ourinfo.class);
                 startActivity(intent);
                 finish();
             }

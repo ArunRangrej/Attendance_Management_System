@@ -120,7 +120,6 @@ public class takeAttendance extends AppCompatActivity {
 
 
     }
-
     public void showSelectedItems(View view) {
         String selItems = "";
         periodno = period.getSelectedItem().toString();

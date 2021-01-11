@@ -66,6 +66,12 @@ public class TeacherLoginActivity extends AppCompatActivity {
         });
     }
 
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(TeacherLoginActivity.this, DashboardActivity.class);
+        startActivity(intent);
+        finish();
+    }
     public void verify(String dbpassword) {
         if(userid.isEmpty()) {
             Toast.makeText(getApplicationContext(),"Username cannot be empty", Toast.LENGTH_LONG).show();

@@ -68,7 +68,12 @@ public class PrincipalLoginActivity extends AppCompatActivity {
             }
         });
     }
-
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(PrincipalLoginActivity.this, DashboardActivity.class);
+        startActivity(intent);
+        finish();
+    }
     public void verify(String dbusername,String dbpassword) {
         if(userid.isEmpty()) {
             Toast.makeText(getApplicationContext(),"Username cannot be empty", Toast.LENGTH_LONG).show();

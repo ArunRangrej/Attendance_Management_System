@@ -17,14 +17,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-public class teacher_attendanceSheet extends AppCompatActivity {
+
+public class Principal_attendanceSheet extends AppCompatActivity {
     ListView listView;
-    String teacher_id,class_selected;
+    String sem1,sem2;
     String sub_selected;
     EditText date;
     ArrayList Userlist = new ArrayList<>();
     ArrayList Studentlist = new ArrayList<>();
-
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     DatabaseReference dbAttendance;
     DatabaseReference dbStudent;
@@ -32,20 +32,19 @@ public class teacher_attendanceSheet extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_attendance_sheet);
+        setContentView(R.layout.activity_principal_attendance_sheet);
         listView = (ListView) findViewById(R.id.list);
         Bundle bundle1 = getIntent().getExtras();
         date = (EditText) findViewById(R.id.date);
-        class_selected = bundle1.getString("class_selected");
-        sub_selected = bundle1.getString("subject_selected");
-        teacher_id = bundle1.getString("tid");
+        sem1="3rd Sem";
+        sem2="5th Sem";
 
     }
 
     public void viewlist(View v) {
 
         Userlist.clear();
-        DatabaseReference dbuser = ref.child("Student").child(class_selected);
+        DatabaseReference dbuser = ref.child("Student").child(sem1);
 
         dbuser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -55,7 +54,32 @@ public class teacher_attendanceSheet extends AppCompatActivity {
                     Userlist.add(dsp.child("usn").getValue().toString());
 
                 }
-                display_list(Userlist);
+
+
+
+
+                display_list(Userlist,sem1);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG).show();
+            }
+
+        });
+
+        DatabaseReference dbuser1 = ref.child("Student").child(sem2);
+
+        dbuser1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dsp : dataSnapshot.getChildren()) {
+                    Userlist.add(dsp.child("usn").getValue().toString());
+
+                }
+
+                display_list(Userlist,sem2);
             }
 
             @Override
@@ -66,23 +90,22 @@ public class teacher_attendanceSheet extends AppCompatActivity {
         });
     }
 
-    public void display_list(final ArrayList userlist) {
+    public void display_list(final ArrayList userlist, String sem) {
 
-        Studentlist.clear();
+
         required_date = date.getText().toString();
         dbAttendance = ref.child("attendance");
-        Studentlist.add("          USN               "+"Status" + "  period");
+        if(sem != "5th Sem"){
+        Studentlist.add("          USN               "+"Status" + "  period");}
         for (Object usn : userlist) {
             System.out.println(usn);
-            dbAttendance.child(required_date).child(class_selected).child(usn.toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+            dbAttendance.child(required_date).child(sem).child(usn.toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for(DataSnapshot dsp : dataSnapshot.getChildren()) {
                         String p1 = dsp.getValue().toString();
                         System.out.println(p1);
-                        if((p1.equals("A / "+sub_selected))||(p1.equals("P / "+sub_selected))){
                             Studentlist.add(dataSnapshot.getKey().toString() + "            " + p1.substring(0,1) +"        "+dsp.getKey());
-                        }
                     }
                     list(Studentlist);
 

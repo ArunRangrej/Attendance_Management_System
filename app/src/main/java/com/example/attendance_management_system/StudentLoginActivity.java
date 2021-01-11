@@ -23,6 +23,7 @@ public class StudentLoginActivity extends AppCompatActivity {
     String dbpassword;
     String myclass;
     Bundle basket;
+    String sem;
     EditText username,password;
     ProgressDialog mDialog;
     @Override
@@ -43,9 +44,10 @@ public class StudentLoginActivity extends AppCompatActivity {
                 mDialog.show();
                 basket = new Bundle();
                 basket.putString("message", userid);
+                sem="3rd Sem";
                 ref = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference dbuser = ref.child("Student").child("5th Sem").child(userid);
-
+                DatabaseReference dbuser = ref.child("Student").child(sem).child(userid);
+                System.out.println("Testing " +dbuser);
 
                 dbuser.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -53,9 +55,33 @@ public class StudentLoginActivity extends AppCompatActivity {
 
                         mDialog.dismiss();
                         dbpassword = dataSnapshot.child("password").getValue(String.class);
-                        myclass="5th Sem";
-                        System.out.println(dbpassword);
-                        verify(dbpassword,myclass);
+                        if(dbpassword != null){
+                            verify(dbpassword,sem);
+                        }
+                        else
+                        {
+                            sem="5th Sem";
+                            ref = FirebaseDatabase.getInstance().getReference();
+                            DatabaseReference dbuser = ref.child("Student").child(sem).child(userid);
+                            System.out.println("Testing " +dbuser);
+
+                            dbuser.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                    mDialog.dismiss();
+                                    dbpassword = dataSnapshot.child("password").getValue(String.class);
+                                        verify(dbpassword,sem);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    Toast.makeText(getApplicationContext(), "database error", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+
+
                     }
 
                     @Override
@@ -63,10 +89,18 @@ public class StudentLoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "database error", Toast.LENGTH_LONG).show();
                     }
                 });
+
+
             }
         });
     }
 
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(StudentLoginActivity.this, DashboardActivity.class);
+        startActivity(intent);
+        finish();
+    }
     public void verify(String dbpassword,String myclass) {
         if(userid.isEmpty()) {
             Toast.makeText(getApplicationContext(),"Username cannot be empty", Toast.LENGTH_LONG).show();

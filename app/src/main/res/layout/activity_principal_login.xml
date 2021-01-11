@@ -73,7 +73,7 @@
                                 android:background="@drawable/inputs"
                                 android:drawableLeft="@drawable/ic_person_black_24dp"
                                 android:drawablePadding="10dp"
-                                android:hint="Principal Id"
+                                android:hint="principal"
                                 android:importantForAutofill="no"
                                 android:inputType="text"
                                 android:padding="10dp"
@@ -83,16 +83,16 @@
                                 android:id="@+id/teacher_password"
                                 android:layout_width="260dp"
                                 android:layout_height="60dp"
-                                android:textColor="#252529"
+                                android:layout_below="@id/teacher_id"
+                                android:layout_centerHorizontal="true"
                                 android:layout_marginTop="10dp"
                                 android:background="@drawable/inputs"
                                 android:drawableLeft="@drawable/ic_lock"
                                 android:drawablePadding="10dp"
-                                android:layout_below="@id/teacher_id"
-                                android:hint="Password"
-                                android:layout_centerHorizontal="true"
+                                android:hint="Default pass : MSRIT"
                                 android:inputType="textPassword"
-                                android:padding="10dp" />
+                                android:padding="10dp"
+                                android:textColor="#252529" />
 
                             <Button
                                 android:id="@+id/login"
@@ -111,15 +111,6 @@
                     </androidx.cardview.widget.CardView>
                 </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_below="@id/relativelayot"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="50dp"
-                    android:background="@drawable/rectangle1">
-
-                </LinearLayout>
             </RelativeLayout>
 
         </LinearLayout>
